@@ -1,21 +1,19 @@
 # tela incial etc
 import pygame
 
+from codding.const import WIN_WIDTH, WIN_HEIGHT
+from codding.menu import Menu
+
+
 class Game:
     def __init__(self):
-        self.window = None
-
-    def run(self, ):
-        print('Setup Started')
         pygame.init()
-        window = pygame.display.set_mode(size=(600, 480))
-        print('Setup Started')
+        self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
 
-        print('Loop Started')
+    def run(self):
         while True:
-            # check for all events
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    print('Quitting')
-                    pygame.quit()  # Close Window
-                    quit()  # end pygame
+            menu = Menu(self.window)
+            menu.run()
+            pass
+
+
