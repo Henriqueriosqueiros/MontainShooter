@@ -1,12 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-from Entity import Entity
+import pygame.transform
+from codding.const import WIN_WIDTH, WIN_HEIGHT, ENTITY_SPEED
+from codding.entity import Entity
 
 
 class Background(Entity):
-    def __init__(self):
-        pass
+    def __init__(self, name: str, position: tuple):
+        super().__init__(name, position)
+        # Redimensiona apenas a imagem de fundo para o tamanho da janela
+        self.surf = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
+        self.rect = self.surf.get_rect(left=position[0], top=position[1])
 
     def move(self, ):
+        self.rect.centerx -= ENTITY_SPEED[self.name]
+
+        if self.rect.right <= 0:
+            self.rect.left = WIN_WIDTH
         pass
